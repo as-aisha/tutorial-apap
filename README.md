@@ -11,34 +11,35 @@
 http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 
 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
 
-Terjadi Whitelabel Error Page. Hal ini terjadi karena belum terdapat template yang dapat dirender.
+    Terjadi Whitelabel Error Page. Hal ini terjadi karena belum terdapat template yang dapat dirender.
 
-2. Menurut kamu anotasi @Autowired pada class Controller tersebutmerupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja
 @Autowired tersebut dalam konteks service dan controller yang telah kamu buat.
 
+    Anotasi @Autowired pada class Controller merupakan implementasi dari konsep Dependency Injection. Dengan anotasi @Autowired, developer tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor untuk class-class dengan anotasi seperti @Service dan @Controller dari package yang telah dicari menggunakan fitur component-scan pada Spring Framework. Setelah ditemukan, maka anotasi @Autowired akan melakukan inisialisasi terhadap class tersebut, dan lalu mengisi (inject) semua kebutuhannya (dependency). Semua field/property yang memiliki anotasi @Autowired akan diisikan oleh Spring dengan object bertipe-data sesuai.
 
 3. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut:
 http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx 
 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
 
-Terjadi Whitelabel Error Page. Hal ini dikarenakan parameter request yang required dan diperlukan, yaitu parameter method 'jumlahStudio' dengan type int, tidak ada.
+    Terjadi Whitelabel Error Page. Hal ini dikarenakan parameter request yang required dan diperlukan, yaitu parameter method 'jumlahStudio' dengan type int, tidak ada.
 
 4. Jika Papa APAP ingin melihat Bioskop dengan nama Bioskop Maung, link apa yang harus diakses?
 
-http://localhost:8080/bioskop/view?idBioskop=2
-Dengan asumsi sudah dilakukan penambahan Bioskop MAUNG setelah bioskop PAPA APAP ditambahkan sehingga Bioskop MAUNG memiliki Id Bioskop: 2. Penambahan Bioskop MAUNG dilakukan dengan cara mengakses link berikut:
-http://localhost:8080/bioskop/add?idBioskop=2&namaBioskop=Bioskop%20MAUNG&alamat=Fasilkom%20UWIW&noTelepon=089xxx&jumlahStudio=10
+    http://localhost:8080/bioskop/view?idBioskop=2
+    Dengan asumsi sudah dilakukan penambahan Bioskop MAUNG setelah bioskop PAPA APAP ditambahkan sehingga Bioskop MAUNG memiliki Id Bioskop: 2. Penambahan Bioskop MAUNG dilakukan dengan cara mengakses link berikut:
+    http://localhost:8080/bioskop/add?idBioskop=2&namaBioskop=Bioskop%20MAUNG&alamat=Fasilkom%20UWIW&noTelepon=089xxx&jumlahStudio=10
 
 5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall , apa yang akan ditampilkan? Sertakan
 juga bukti screenshotmu.
 
-Setelah menambahkan bioskop lain, ketika mengakses link di atas akan muncul daftar seluruh bioskop yang telah didaftarkan beserta dengan detailnya, yaitu Bioskop PAPA APAP dan Bioskop MAUNG.
-![Screenshot Pertanyaan 5](https://photos.app.goo.gl/kFMWxmaF2kKbieoJ9)
+    Setelah menambahkan bioskop lain, ketika mengakses link di atas akan muncul daftar seluruh bioskop yang telah didaftarkan beserta dengan detailnya, yaitu Bioskop PAPA APAP dan Bioskop MAUNG.
+    ![Screenshot Pertanyaan 5](https://drive.google.com/file/d/1IZQldXfF7u3q9NL6LNbsWEMHxfi9djTG/view?usp=sharing)
 
 
 ### What I did not understand
 - [ ] Pemakaian GitHub secara maksimal
-- [ ] Penggunaan SpringBoot
+- [ ] 
 
 
 
