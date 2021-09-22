@@ -39,6 +39,36 @@ public class BioskopController {
         return "add-bioskop";
     }
 
+    //Challenge
+    //Routing URL yang diinginkan
+    @RequestMapping("/bioskop/add-no-telp")
+    public String addBioskopMinTelp(
+            //Request parameter yang ingin digunakan
+            @RequestParam(value = "idBioskop", required = true) String idBioskop,
+            @RequestParam(value = "namaBioskop", required = true) String namaBioskop,
+            @RequestParam(value = "alamat", required = true) String alamat,
+            @RequestParam(value = "noTelepon", required = false) String noTelepon,
+            @RequestParam(value = "jumlahStudio", required = true) int jumlahStudio,
+            Model model
+    ) {
+        //Membuat objek BioskopModel
+        BioskopModel bioskopModel = new BioskopModel(idBioskop, namaBioskop, alamat, noTelepon, jumlahStudio);
+
+        //Mengatur no telepon menjadi "-" apabila user tidak memasukkan parameter no telepon ketika menambahkan bioskop
+        if (bioskopModel.getNoTelepon() == null) {
+            bioskopModel.setNoTelepon("-");
+        }
+
+        //Menambahkan objek BioskopModel ke dalam service
+        bioskopService.addBioskop(bioskopModel);
+
+        //Add variabel id bioskop ke "idBioskop" untuk dirender ke dalam thymeleaf
+        model.addAttribute("idBioskop", idBioskop);
+
+        //Return view template yang digunakan
+        return "add-bioskop";
+    }
+
     @RequestMapping("/bioskop/viewall")
     public String listBioskop(Model model) {
         //Mendapatkan semua bioskop
