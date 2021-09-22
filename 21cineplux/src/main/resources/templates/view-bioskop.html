@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Bioskop</title>
+</head>
+<body>
+    <h2>Detail Bioskop</h2>
+    <h3 th:text="'Id Bioskop : ' + ${bioskop.idBioskop}"></h3>
+    <h3 th:text="'Nama Bioskop : ' + ${bioskop.namaBioskop}"></h3>
+    <h3 th:text="'Alamat Bioskop : ' + ${bioskop.alamat}"></h3>
+    <h3 th:text="'Nomor Telepon Bioskop : ' + ${bioskop.noTelepon}"></h3>
+    <h3 th:text="'Jumlah Studio Bioskop : ' + ${bioskop.jumlahStudio}"></h3>
+    <a href="/bioskop/viewall">Kembali</a>
+</body>
+</html>

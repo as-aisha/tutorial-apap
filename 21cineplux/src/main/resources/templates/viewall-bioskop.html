@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Bioskop</title>
+</head>
+<body>
+    <h2>Daftar Seluruh Bioskop</h2>
+    <div th:each="bioskop : ${listBioskop}">
+        <h3 th:text="'Id Bioskop : ' + ${bioskop.idBioskop}"></h3>
+        <h3 th:text="'Nama Bioskop : ' + ${bioskop.namaBioskop}"></h3>
+        <h3 th:text="'Alamat Bioskop : ' + ${bioskop.alamat}"></h3>
+        <h3 th:text="'Nomor Telepon Bioskop : ' + ${bioskop.noTelepon}"></h3>
+        <h3 th:text="'Jumlah Studio Bioskop : ' + ${bioskop.jumlahStudio}"></h3>
+    </div>
+</body>
+</html>
