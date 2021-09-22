@@ -34,12 +34,12 @@ Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
 juga bukti screenshotmu.
 
     Setelah menambahkan bioskop lain, ketika mengakses link di atas akan muncul daftar seluruh bioskop yang telah didaftarkan beserta dengan detailnya, yaitu Bioskop PAPA APAP dan Bioskop MAUNG.
-    ![Screenshot Pertanyaan 5](https://drive.google.com/file/d/1IZQldXfF7u3q9NL6LNbsWEMHxfi9djTG/view?usp=sharing)
+    ![Screenshot Pertanyaan 5](img.png)
 
 
 ### What I did not understand
 - [ ] Pemakaian GitHub secara maksimal
-- [ ] 
+- [ ] Apa saja yang harusnya di-handle di dalam Service ataupun Controller
 
 
 
