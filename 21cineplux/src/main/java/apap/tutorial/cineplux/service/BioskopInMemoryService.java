@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
 @Service
 public class BioskopInMemoryService implements BioskopService {
 
@@ -41,3 +42,5 @@ public class BioskopInMemoryService implements BioskopService {
         listBioskop.remove(bioskop);
     }
 }
+
+ */

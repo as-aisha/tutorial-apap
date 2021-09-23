@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>21 Cineplux</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Tambah Bioskop</h2>
+                <br>
+                <form th:action="@{/bioskop/add}" th:object="${bioskop}" method="POST">
+                    Nama Bioskop : <br>
+                    <input required class="form-control" type="text" name="namaBioskop" />
+                    <br><br>
+
+                    Alamat Bioskop: <br>
+                    <input required class="form-control" type="text" name="alamatBioskop" />
+                    <br><br>
+
+                    Jumlah Studio : <br>
+                    <input required min="0" class="form-control" type="number" name="jumlahStudio" />
+                    <br><br>
+
+                    Waktu Buka : <br>
+                    <input required class="form-control" type="time" name="waktuBuka" />
+                    <br><br>
+
+                    Waktu Tutup : <br>
+                    <input required class="form-control" type="time" name="waktuTutup" />
+                    <br><br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="btn btn-primary" href="/">Home</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
