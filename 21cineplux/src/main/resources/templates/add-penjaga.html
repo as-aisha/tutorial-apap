@@ -12,9 +12,12 @@
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 th:text="'Bioskop dengan nomor bioskop ' + ${noBioskop} + ' berhasil ditambahkan.'"></h2>
                 <br>
-                <a class="btn btn-primary" href="/">Home</a>
+                <h2
+                        th:text="'Bioskop dengan nomor bioskop ' + ${noBioskop} + ' berhasil menambahkan ' +${namaPenjaga}+ ' sebagai penjaga.'">
+                </h2>
+                <a class="btn btn-primary" th:href="@{/bioskop/view(noBioskop=${noBioskop})}">Kembali</a>
+
             </div>
         </div>
     </div>

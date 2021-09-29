@@ -12,7 +12,9 @@
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2 th:text="'Bioskop dengan nomor bioskop ' + ${noBioskop} + ' berhasil ditambahkan.'"></h2>
+                <h2 th:text="'Bioskop ' + ${bioskop.namaBioskop} + ' dengan id bioskop ' + ${bioskop.noBioskop} + ' masih buka.'"></h2>
+                <h2>Pekerjaan tidak berhasil dilakukan.</h2>
+                <h2>Silakan coba kembali setelah bioskop tutup.</h2>
                 <br>
                 <a class="btn btn-primary" href="/">Home</a>
             </div>
