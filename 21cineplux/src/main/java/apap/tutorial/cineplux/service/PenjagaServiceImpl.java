@@ -18,9 +18,7 @@ public class PenjagaServiceImpl implements PenjagaService {
     PenjagaDB penjagaDB;
 
     @Override
-    public void addPenjaga(PenjagaModel penjaga) {
-        penjagaDB.save(penjaga);
-    }
+    public void addPenjaga(PenjagaModel penjaga) { penjagaDB.save(penjaga);    }
 
     @Override
     public PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga) {

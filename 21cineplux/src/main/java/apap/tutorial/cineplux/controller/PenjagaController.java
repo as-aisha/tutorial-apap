@@ -42,6 +42,7 @@ public class PenjagaController {
         model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
         model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
         return "add-penjaga";
+
     }
 
     @GetMapping("/penjaga/update/{noPenjaga}")

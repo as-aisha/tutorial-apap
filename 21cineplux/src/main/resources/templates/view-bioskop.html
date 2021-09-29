@@ -26,6 +26,7 @@
                         <p th:text="'Nama : ' + ${penjaga.namaPenjaga}"></p>
                         <p th:if="${penjaga.jenisKelamin == 0}">Jenis Kelamin : Perempuan</p>
                         <p th:if="${penjaga.jenisKelamin == 1}">Jenis Kelamin : Laki-laki</p>
+                        <p th:text="'Umur : ' + ${penjaga.umurPenjaga}"></p>
                         <a class="btn btn-primary" th:href="@{/penjaga/update/} + ${penjaga.noPenjaga}">Update Penjaga</a>
                         <a class="btn btn-primary" th:href="@{/penjaga/delete/} + ${penjaga.noPenjaga}">Delete Penjaga</a>
                         <hr>
