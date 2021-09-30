@@ -49,10 +49,8 @@ public class PenjagaController {
             @PathVariable Long noPenjaga,
             Model model
     ) {
-        //Mendapatkan penjaga sesuai dengan noPenjaga
         PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
 
-        //Add objek BioskopModel ke 'penjaga' untuk dirender dalam thymeleaf
         model.addAttribute("penjaga", penjaga);
         model.addAttribute("bioskop", penjaga.getBioskop());
 
@@ -61,7 +59,7 @@ public class PenjagaController {
         if (keyword.equals("waktu-failed")) {
             return "error-page-waktu-bioskop";
         } else {
-            //Return view template yang diinginkan
+
             return "form-update-penjaga";
         }
     }
@@ -82,7 +80,6 @@ public class PenjagaController {
             @PathVariable Long noPenjaga,
             Model model
     ) {
-        //Mendapatkan penjaga sesuai dengan noPenjaga
         PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
 
         model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
@@ -96,5 +93,21 @@ public class PenjagaController {
             //Return view template yang diinginkan
             return "delete-penjaga";
         }
+    }
+
+    @PostMapping("/penjaga/delete")
+    public String deletePenjagaSubmit(
+            @ModelAttribute BioskopModel bioskop,
+            Model model
+    ) {
+        model.addAttribute("bioskop", bioskop);
+        int res = 1;
+        for (PenjagaModel penjaga : bioskop.getListPenjaga()) {
+            res = penjagaService.deletePenjagaSubmit(penjaga);
+        }
+        if (res == 1) {
+            return "delete-penjaga";
+        }
+        return "error-page-waktu-bioskop";
     }
 }

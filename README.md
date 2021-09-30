@@ -5,7 +5,39 @@
 * **Aisha Salsabila** - *1906399902* - *C*
 
 ---
+## Tutorial 4
+### Pertanyaan
+1. Jelaskan perbedaan th:include dan th:replace!
+
+   → Jika menggunakan th:include, fragment akan diletakkan di dalam tag yang melingkupi th:include tersebut. Sedangkan, apabila menggunakan th:replace, seluruh isi tag akan digantikan dengan fragment.
+
+2. Jelaskan apa fungsi dari th:object!
+
+   → th:object berfungsi untuk menjadikan atributnya sebagai object dari operasi-operasi di bawahnya. Sebagai contoh, dengan penulisan syntax th:object="${bioskop}", maka bioskop dapat digunakan sebagai object pada operasi selanjutnya hanya dengan menambahkan tanda bintang di depan atribut yang ingin digunakan.
+   e.g. <span th:text="*{namaBioskop}">GCV</span>
+
+< span th :text=" $ {restoran.nama}"> mekdi< /span>.
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+
+   → Sintax asterisk (*) mengevaluasi ekspresi pada objek yang dipilih dan bukan pada keseluruhan konteks. Sedangkan, syntax dollar ($) membutuhkan konteks yang utuh dari objek yang dipilih. Berikut contoh pemakaian pemakaian kedua syntax.
+   
+    <div th:object = "${bioskop}" class="box">
+        <p><b>Nama Bioskop</b> <span th:utext="*{namaBioskop}"></span></p>
+        <p><b>Email:</b> <span th:utext="${bioskop.noBioskop}"></span></p>
+    </div>
+
+   Titik (dot) pada ekspresi dengan syntax dollar digunakan untuk merujuk pada atribut/metode objek yang dipilih pada th:object. Pada ekspresi ${bioskop.noBioskop}, ekspresi tersebut mencoba menemukan objek model bioskop dan memanggil bioskop.getNoBioskop().
+
+
+### What I did not understand
+- [ ] Implementasi dynamic field pada thymeleaf
+
+
+
+---
 ## Tutorial 3
+### What I have learned today
 ### Pertanyaan
 1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model 
    (@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
@@ -50,13 +82,10 @@
    - FetchType.EAGER → Digunakan agar semua perubahan yang terjadi pada suatu entitas terjadi juga pada entitas yang memiliki relasi dengannya (atribut foreign key). Perubahan ini dapat terjadi karena DELETE, UPDATE, dsb.
 
 
-### What I did not understand
-- [ ] 
-
-
 
 ---
 ## Tutorial 2
+### What I have learned today
 ### Pertanyaan
 1. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: 
 http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 
@@ -97,8 +126,6 @@ juga bukti screenshotmu.
 ---
 ## Tutorial 1
 ### What I have learned today
-(Masukkan pertanyaan yang diikuti jawaban di setiap nomor, contoh seperti dibawah. Anda
-juga boleh menambahkan catatan apapun di bagian ini)
 ### Github
 1. Apa itu Issue Tracker? Apa saja masalah yang dapat diselesaikan dengan Issue Tracker?
 
