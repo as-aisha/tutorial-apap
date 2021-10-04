@@ -58,5 +58,8 @@
     </button>
 
 </nav>
+<div th:fragment="footer">
+    <span th:text="${#execInfo.now.time}"></span>
+</div>
 </body>
 </html>
