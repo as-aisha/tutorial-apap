@@ -14,24 +14,27 @@
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2>Tambah Penjaga</h2>
+                <h2>Tambah Film</h2>
                 <br>
-                <form th:action="@{/penjaga/add}" th:object="${penjaga}" method="POST">
-                    <input type="hidden" th:field="*{bioskop}" />
+                <form th:action="@{/film/add}" th:object="${film}" method="POST">
 
-                    Nama Penjaga : <br>
-                    <input required class="form-control" type="text" name="namaPenjaga" />
-                    <br>
+                    Nama Film : <br>
+                    <input required class="form-control" type="text" name="namaFilm" />
+                    <br><br>
 
-                    Jenis Kelamin : <br>
-                    <select name="jenisKelamin">
-                        <option value="0">Perempuan</option>
-                        <option value="1">Laki-laki</option>
+                    Deskripsi Film : <br>
+                    <input required class="form-control" type="text" name="deskripsiFilm" />
+                    <br><br>
+
+                    Sedang Tayang : <br>
+                    <select name="isDisplaying" th:field="*{isDisplaying}"
+                            class="form-control">
+                        <option th:value="true" th:text="YA"></option>
+                        <option th:value="false" th:text="TIDAK"></option>
                     </select>
                     <br><br>
 
                     <button class="btn btn-primary" type="submit">Submit</button>
-                    <a class="btn btn-primary" th:href="@{/bioskop/view(noBioskop=${penjaga.bioskop.noBioskop})}">Kembali</a>
                     <a class="btn btn-primary" href="/">Home</a>
                 </form>
             </div>

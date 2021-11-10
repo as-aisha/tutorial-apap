@@ -3,15 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> 21 Cineplux </title>
+    <title> 400 Bad Request </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2 th:text="'Id bioskop kosong atau tidak ditemukan.'"></h2>
-    <h2 th:text="'Proses view/update/delete dibatalkan.'"></h2>
-    <a href="/bioskop/viewall">Kembali</a>
+<div class="container-fluid">
+    <h1>400 Bad Request </h1>
+    <h2>The server could not understand the request due to invalid syntax.</h2>
+    <h2>>> Terdapat error pada browser</h2>
+    <a th:href="@{/}">Kembali ke Home</a>
+</div>
 </body>
 </html>

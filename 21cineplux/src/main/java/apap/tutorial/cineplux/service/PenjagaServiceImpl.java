@@ -3,6 +3,7 @@ package apap.tutorial.cineplux.service;
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.repository.PenjagaDB;
+import apap.tutorial.cineplux.repository.BioskopDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class PenjagaServiceImpl implements PenjagaService {
 
     @Autowired
     PenjagaDB penjagaDB;
+    BioskopDB bioskopDB;
 
     @Override
     public void addPenjaga(PenjagaModel penjaga) {
@@ -33,21 +35,34 @@ public class PenjagaServiceImpl implements PenjagaService {
 
     @Override
     public String updatePenjaga(PenjagaModel penjaga) {
-        if (penjaga.getBioskop().getWaktuBuka().isBefore(LocalTime.now()) && penjaga.getBioskop().getWaktuTutup().isAfter(LocalTime.now())) {
-            return "waktu-failed";
-        } else {
+        LocalTime now = LocalTime.now();
+        BioskopModel bioskop = penjaga.getBioskop();
+        if (now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())) {
             penjagaDB.save(penjaga);
             return "update-success";
         }
+        return "waktu-failed";
     }
 
     @Override
     public String deletePenjaga(PenjagaModel penjaga) {
-        if (penjaga.getBioskop().getWaktuBuka().isBefore(LocalTime.now()) && penjaga.getBioskop().getWaktuTutup().isAfter(LocalTime.now())) {
+        if (penjaga.getBioskop().getWaktuBuka().isBefore(LocalTime.now()) || penjaga.getBioskop().getWaktuTutup().isAfter(LocalTime.now())) {
             return "waktu-failed";
         } else {
             penjagaDB.delete(penjaga);
             return "delete-success";
         }
+    }
+
+
+    @Override
+    public int deletePenjagaSubmit(PenjagaModel penjaga) {
+        LocalTime now = LocalTime.now();
+        BioskopModel bioskop = penjaga.getBioskop();
+        if (now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())) {
+            penjagaDB.delete(penjaga);
+            return 1;
+        }
+        return 0;
     }
 }

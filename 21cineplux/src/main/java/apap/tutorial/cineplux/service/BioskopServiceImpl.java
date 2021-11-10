@@ -46,7 +46,7 @@ public class BioskopServiceImpl implements BioskopService {
     @Override
     public String deleteBioskop(BioskopModel bioskop) {
         if (bioskop.getListPenjaga().isEmpty()) {
-            if (bioskop.getWaktuBuka().isBefore(LocalTime.now()) && bioskop.getWaktuTutup().isAfter(LocalTime.now())) {
+            if (bioskop.getWaktuBuka().isBefore(LocalTime.now()) || bioskop.getWaktuTutup().isAfter(LocalTime.now())) {
                 return "waktu-failed";
             } else {
                 bioskopDB.delete(bioskop);

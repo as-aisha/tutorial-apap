@@ -11,4 +11,6 @@ public interface PenjagaService {
     String updatePenjaga(PenjagaModel penjaga);
 
     String deletePenjaga(PenjagaModel penjaga);
+
+    int deletePenjagaSubmit(PenjagaModel penjaga);
 }
