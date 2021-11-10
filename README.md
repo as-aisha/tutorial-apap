@@ -32,11 +32,6 @@
 
    → WebClient berfungsi untuk mempermudah tasks umum seperti CRUD. Pada dasarnya, ia memiliki fungsi yang sama dengan HttpWebResponse, tetapi dengan level abstraksi yang lebih tinggi. Selain itu, tidak terdapat properti waktu dengan penggunaan WebClient.
 
-
-4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
-ResponseEntity, mewakili seluruh respon dari HTTP. Ini mampu mengontrol yang akan masuk ke dalamnya seperti kode, status, dan header. 
-BindingResult, interface yang mewakili hasil dari pengikat (binding). Ini dapat memperluas error registration, sehingga memungkinkan Validator untuk diterapkan dan menambahkan analisis khusus terkait dengan pengikatan.
-
 4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
 
    → ResponseEntity merepresentasikan seluruh respons HTTP: kode status, header, dan isi sehingga ia dapat digunakan untuk mengonfigurasi respons HTTP sepenuhnya. Jika kita ingin menggunakannya, kita harus me-return-nya dari end point dan Spring akan mengurus sisanya.
