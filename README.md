@@ -14,17 +14,19 @@
 2. Jelaskan apa fungsi dari th:object!
 
    → th:object berfungsi untuk menjadikan atributnya sebagai object dari operasi-operasi di bawahnya. Sebagai contoh, dengan penulisan syntax th:object="${bioskop}", maka bioskop dapat digunakan sebagai object pada operasi selanjutnya hanya dengan menambahkan tanda bintang di depan atribut yang ingin digunakan.
-   e.g. < span th:text=" * {namaBioskop}">GCV< /span>
+    ```
+    e.g. < span th:text=" * {namaBioskop}">GCV< /span>
+    ```
 
 3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
 
    → Sintax asterisk (*) mengevaluasi ekspresi pada objek yang dipilih dan bukan pada keseluruhan konteks. Sedangkan, syntax dollar ($) membutuhkan konteks yang utuh dari objek yang dipilih. Berikut contoh pemakaian pemakaian kedua syntax.
-   
+    ```
     < div th:object = "$ {bioskop}" class="box">
         < p>< b>Nama Bioskop< /b> < span th:utext="* {namaBioskop}">< /span>< /p>
         < p>< b>Email:< /b> < span th:utext="$ {bioskop.noBioskop}">< /span>< /p>
     < /div>
-
+    ```
    Titik (dot) pada ekspresi dengan syntax dollar digunakan untuk merujuk pada atribut/metode objek yang dipilih pada th:object. Pada ekspresi ${bioskop.noBioskop}, ekspresi tersebut mencoba menemukan objek model bioskop dan memanggil bioskop.getNoBioskop().
 
 
