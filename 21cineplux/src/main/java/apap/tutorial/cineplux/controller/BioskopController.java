@@ -23,6 +23,8 @@ public class BioskopController {
     @Autowired
     private BioskopService bioskopService;
 
+    @Qualifier("filmServiceImpl")
+    @Autowired
     private FilmService filmService;
 
     //Routing URL yang diinginkan

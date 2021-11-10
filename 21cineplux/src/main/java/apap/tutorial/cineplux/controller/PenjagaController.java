@@ -59,7 +59,6 @@ public class PenjagaController {
         if (keyword.equals("waktu-failed")) {
             return "error-page-waktu-bioskop";
         } else {
-
             return "form-update-penjaga";
         }
     }
@@ -74,7 +73,7 @@ public class PenjagaController {
         model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
         return "update-penjaga";
     }
-
+ /*
     @GetMapping("/penjaga/delete/{noPenjaga}")
     public String DeletePenjaga(
             @PathVariable Long noPenjaga,
@@ -94,6 +93,8 @@ public class PenjagaController {
             return "delete-penjaga";
         }
     }
+
+  */
 
     @PostMapping("/penjaga/delete")
     public String deletePenjagaSubmit(

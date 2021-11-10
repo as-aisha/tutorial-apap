@@ -35,12 +35,13 @@ public class PenjagaServiceImpl implements PenjagaService {
 
     @Override
     public String updatePenjaga(PenjagaModel penjaga) {
-        if (penjaga.getBioskop().getWaktuBuka().isBefore(LocalTime.now()) || penjaga.getBioskop().getWaktuTutup().isAfter(LocalTime.now())) {
-            return "waktu-failed";
-        } else {
+        LocalTime now = LocalTime.now();
+        BioskopModel bioskop = penjaga.getBioskop();
+        if (now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())) {
             penjagaDB.save(penjaga);
             return "update-success";
         }
+        return "waktu-failed";
     }
 
     @Override
@@ -52,6 +53,7 @@ public class PenjagaServiceImpl implements PenjagaService {
             return "delete-success";
         }
     }
+
 
     @Override
     public int deletePenjagaSubmit(PenjagaModel penjaga) {

@@ -58,8 +58,8 @@
     </button>
 
 </nav>
-<div th:fragment="footer">
-    <span th:text="${#execInfo.now.time}"></span>
-</div>
+<footer th:fragment="footer">
+    <p th:text="${#calendars.format(#calendars.createNow(), 'HH:mm')}" style="text-align: center"></p>
+</footer>
 </body>
 </html>
