@@ -3,11 +3,10 @@ package apap.tutorial.cineplux.service;
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.repository.PenjagaDB;
+import apap.tutorial.cineplux.rest.PredictAge;
 import apap.tutorial.cineplux.rest.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -20,7 +19,11 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PenjagaRestServiceImpl implements PenjagaRestService{
-//    private final WebClient webClient;
+    private final WebClient webClient;
+
+    public PenjagaRestServiceImpl (WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl(Setting.ageUrl).build();
+    }
 
     @Autowired
     private PenjagaDB penjagaDB;
@@ -66,28 +69,32 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
         }
     }
 
-//    public BioskopRestServiceImpl(WebClient.Builder webClientBuilder) {
-//        this.webClient = webClientBuilder.baseUrl(Setting.bioskopUrl).build();
-//    }
-//
-//    @Override
-//    public Mono<String> getStatus(Long noBioskop) {
-//        return this.webClient.get().uri("/rest/bioskop/" + noBioskop + "/status")
-//                .retrieve()
-//                .bodyToMono(String.class);
-//    }
-//
-//    @Override
-//    public Mono<BioskopDetail> postStatus() {
-//        MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
-//        data.add("namaBioskop", "Bioskop Mock Server");
-//        data.add("alamatBioskop", "Depok");
-//
-//        return this.webClient.post().uri("/rest/bioskop/full")
-//                .syncBody(data)
-//                .retrieve()
-//                .bodyToMono(BioskopDetail.class);
-//    }
+    @Override
+    public void updateUmurPenjaga(Long noPenjaga, PenjagaModel penjagaUpdate){
+        PenjagaModel penjaga = getPenjagaByNoPenjaga(noPenjaga);
+        penjaga.setNamaPenjaga(penjagaUpdate.getNamaPenjaga());
+        penjaga.setJenisKelamin(penjagaUpdate.getJenisKelamin());
+        penjaga.setUmur(penjagaUpdate.getUmur());
+        penjagaDB.save(penjaga);
+
+
+    }
+
+    @Override
+    public PredictAge getPrediksiUmur(Long noPenjaga) {
+        LocalTime now = LocalTime.now();
+        PenjagaModel penjaga = getPenjagaByNoPenjaga(noPenjaga);
+        BioskopModel bioskop = penjaga.getBioskop();
+        if(now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())) {
+            String namaPenjaga = penjaga.getNamaPenjaga().split(" ")[0];
+            return this.webClient.get().uri("/?name=" + namaPenjaga)
+                    .retrieve()
+                    .bodyToMono(PredictAge.class).block();
+        } else {
+            throw new UnsupportedOperationException("Bioskop still open!");
+        }
+    }
+
 
 }
 

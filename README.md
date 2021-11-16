@@ -12,7 +12,7 @@
    → Postman merupakan sebuah aplikasi yang berfungsi sebagai REST CLIENT untuk melakukan uji coba REST API. Postman biasa digunakan oleh developer pembuat API sebagai tools untuk menguji API yang telah mereka buat.
    Terdapat fitur-fitur pada Postman yang dapat membantu dalam proses development API, antara lain:
     - Collection
-        Pengelompokan request API yang bisa disimpan atau diatur dalam bentuk folder. Memudahkan untuk pengelompokan request sesuai dengan proyek yang di kerjakan.
+        Pengelompokan request API yang bisa disimpan atau diatur dalam bentuk folder. Memudahkan untuk pengelompokan request sesuai dengan proyek yang dikerjakan.
     - Environment
         Semacam config untuk menyimpan attribute dan attribute tersebut dapat digunakan ataupun dimanipulasi dalam proses request API.
     - Response
