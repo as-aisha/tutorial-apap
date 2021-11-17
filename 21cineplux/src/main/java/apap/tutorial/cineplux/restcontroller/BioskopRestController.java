@@ -89,6 +89,7 @@ public class BioskopRestController {
     private List<BioskopModel> retrieveListBioskopSortedByNama() {
         return bioskopRestService.retrieveListBioskopSorted();
     }
+
 }
 
 

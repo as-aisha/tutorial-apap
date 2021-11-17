@@ -90,14 +90,4 @@ public class PenjagaRestController {
         }
     }
 
-//    @GetMapping(value = "/bioskop/{noBioskop}/status")
-//    private Mono<String> getStatus(@PathVariable("noBioskop") Long noBioskop) {
-//        return bioskopRestService.getStatus(noBioskop);
-//    }
-//
-//    @GetMapping(value = "/full")
-//    private Mono<BioskopDetail> postStatus(){
-//        return bioskopRestService.postStatus();
-//    }
-
 }

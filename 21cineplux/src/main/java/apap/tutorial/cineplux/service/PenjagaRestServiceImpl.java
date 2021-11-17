@@ -3,10 +3,13 @@ package apap.tutorial.cineplux.service;
 import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.repository.PenjagaDB;
+
 import apap.tutorial.cineplux.rest.PredictAge;
 import apap.tutorial.cineplux.rest.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -76,8 +79,6 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
         penjaga.setJenisKelamin(penjagaUpdate.getJenisKelamin());
         penjaga.setUmur(penjagaUpdate.getUmur());
         penjagaDB.save(penjaga);
-
-
     }
 
     @Override
@@ -94,7 +95,6 @@ public class PenjagaRestServiceImpl implements PenjagaRestService{
             throw new UnsupportedOperationException("Bioskop still open!");
         }
     }
-
 
 }
 

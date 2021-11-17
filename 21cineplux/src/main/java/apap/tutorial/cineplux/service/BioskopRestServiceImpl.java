@@ -95,5 +95,4 @@ public class BioskopRestServiceImpl implements BioskopRestService{
 
     @Override
     public List<BioskopModel> retrieveListBioskopSorted() { return bioskopDB.findOrderByNamaBioskopDesc(); }
-
 }
