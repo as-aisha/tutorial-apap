@@ -75,14 +75,19 @@ public class PenjagaRestController {
         return penjagaRestService.retrieveListPenjaga();
     }
 
-//    @GetMapping(value = "/bioskop/{noBioskop}/status")
-//    private Mono<String> getStatus(@PathVariable("noBioskop") Long noBioskop) {
-//        return bioskopRestService.getStatus(noBioskop);
-//    }
-//
-//    @GetMapping(value = "/full")
-//    private Mono<BioskopDetail> postStatus(){
-//        return bioskopRestService.postStatus();
-//    }
+    @GetMapping(value= "/penjaga/umur/{noPenjaga}")
+    private PenjagaModel getPrediksiUmurPenjaga(@PathVariable("noPenjaga") Long noPenjaga){
+        try{
+            PenjagaModel penjaga = penjagaRestService.getPenjagaByNoPenjaga(noPenjaga);
+            Integer umur = penjagaRestService.getPrediksiUmur(noPenjaga).getAge();
+            penjaga.setUmur(umur);
+            penjagaRestService.updateUmurPenjaga(noPenjaga, penjaga);
+            return penjagaRestService.getPenjagaByNoPenjaga(noPenjaga);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
+            );
+        }
+    }
 
 }

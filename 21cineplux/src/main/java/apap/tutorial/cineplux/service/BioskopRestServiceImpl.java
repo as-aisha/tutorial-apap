@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -92,4 +93,6 @@ public class BioskopRestServiceImpl implements BioskopRestService{
                 .bodyToMono(BioskopDetail.class);
     }
 
+    @Override
+    public List<BioskopModel> retrieveListBioskopSorted() { return bioskopDB.findOrderByNamaBioskopDesc(); }
 }
