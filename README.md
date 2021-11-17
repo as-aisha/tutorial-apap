@@ -5,6 +5,54 @@
 * **Aisha Salsabila** - *1906399902* - *C*
 
 ---
+## Tutorial 5
+### Pertanyaan
+1. Apa itu Postman? Apa kegunaannya?
+
+   → Postman merupakan sebuah aplikasi yang berfungsi sebagai REST CLIENT untuk melakukan uji coba REST API. Postman biasa digunakan oleh developer pembuat API sebagai tools untuk menguji API yang telah mereka buat.
+   Terdapat fitur-fitur pada Postman yang dapat membantu dalam proses development API, antara lain:
+    - Collection
+        Pengelompokan request API yang bisa disimpan atau diatur dalam bentuk folder. Memudahkan untuk pengelompokan request sesuai dengan proyek yang di kerjakan.
+    - Environment
+        Semacam config untuk menyimpan attribute dan attribute tersebut dapat digunakan ataupun dimanipulasi dalam proses request API.
+    - Response
+        Developer dapat membuat Mockup API sebelum benar-benar mengimplementasikan ke dalam proyek.
+    - Mock Server
+        Dengan fitur ini, Mockup API yang dibuat menggunakan fitur “example response” dapat diakses dari internet layaknya Mockup API tersebut sudah di implementasikan dan di deploy ke server.
+    - Script Test
+        Fitur untuk melakukan validasi respon, termasuk di dalamnya menuliskan test sesuai dengan kebutuhan.
+    - Automated Test (Runner)
+        Menjalakan request dalam satu collection secara otomatis, dengan menggunakan script test.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty
+
+   → @JsonIgnoreProperties digunakan di tingkat class untuk menandai properti atau daftar properti yang akan diabaikan, sedangkan @JsonProperty digunakan untuk menandai method getter/setter non-standar pada properti JSON.
+
+3. Apa kegunaan atribut WebClient?
+
+   → WebClient berfungsi untuk mempermudah tasks umum seperti CRUD. Pada dasarnya, ia memiliki fungsi yang sama dengan HttpWebResponse, tetapi dengan level abstraksi yang lebih tinggi. Selain itu, tidak terdapat properti waktu dengan penggunaan WebClient.
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+
+   → ResponseEntity merepresentasikan seluruh respons HTTP: kode status, header, dan isi sehingga ia dapat digunakan untuk mengonfigurasi respons HTTP sepenuhnya. Jika kita ingin menggunakannya, kita harus me-return-nya dari end point dan Spring akan mengurus sisanya.
+   
+   BindingResult merupakan objek Spring yang menyimpan hasil validation dan binding, serta berisi error-error yang mungkin terjadi. BindingResult harus muncul tepat setelah objek model yang divalidasi atau Spring akan gagal memvalidasi objek dan melempar exception. BindingResult berfungsi untuk 
+
+**Referensi:**
+- [Postman](https://antares.id/id/postman.html#:~:text=Terima%20Data%20(Get)-,Pendahuluan,API%20yang%20telah%20mereka%20buat.)
+- [Postman](https://medium.com/@novancimol12/postman-4f181d625fe1)
+- [Jackson Annotations - @JsonIgnoreProperties](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonignoreproperties.htm)
+- [Jackson Annotations - @JsonProperty](https://www.tutorialspoint.com/jackson_annotations/jackson_annotations_jsonproperty.htm)
+- [Using Spring ResponseEntity to Manipulate the HTTP Response](https://www.baeldung.com/spring-response-entity)
+- [What is the use of BindingResult interface in spring MVC?](https://stackoverflow.com/questions/10413886/what-is-the-use-of-bindingresult-interface-in-spring-mvc/36715053)
+
+
+### What I did not understand
+- [ ] banyak T_T
+
+
+
+---
 ## Tutorial 4
 ### Pertanyaan
 1. Jelaskan perbedaan th:include dan th:replace!
