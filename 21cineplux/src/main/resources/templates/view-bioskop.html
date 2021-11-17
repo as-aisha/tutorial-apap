@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -26,39 +27,44 @@
                 <div th:if="*{listPenjaga.size() != 0}">
                     <form th:action="@{/penjaga/delete}" th:object="${bioskop}" method="POST">
                         <input type="hidden" th:field="${bioskop.noBioskop}">
-                        <table class="table">
+                        <table class="table" style="text-align: center">
                             <thead>
-                            <tr style="text-align: center" >
+                            <tr>
                                 <th>No</th>
                                 <th>No Penjaga</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
-                                <th></th>
-                                <th>Hapus</th>
+                                <div sec:authorize="hasAuthority('MANAGER')">
+                                    <th></th>
+                                    <th>Hapus</th>
+                                </div>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="penjaga, iterationStatus : ${listPenjaga}"
                                 th:style="${iterationStatus.even} ? 'font-weight:bold;'">
-                                <td style="text-align: center" th:text="${iterationStatus.count}"></td>
-                                <td style="text-align: center" th:text="${penjaga.noPenjaga}"></td>
+                                <td th:text="${iterationStatus.count}"></td>
+                                <td th:text="${penjaga.noPenjaga}"></td>
                                 <td th:text="${penjaga.namaPenjaga}"></td>
                                 <td th:if="${penjaga.jenisKelamin} == 0">Perempuan</td>
                                 <td th:if="${penjaga.jenisKelamin} == 1">Laki-laki</td>
-
-                                <td style="text-align: center" >
-                                    <a class="btn btn-sm btn-primary" th:href="@{/penjaga/update/} + ${penjaga.noPenjaga}">Update</a>
-                                </td>
-                                <td style="text-align: center">
-                                    <input class="form-check-input" type="checkbox"
-                                           th:field="*{listPenjaga}" th:value="${penjaga.noPenjaga}"
-                                           id="flexCheckDefault" style="text-align: center" >
-                                    <!-- <a class="btn btn-sm btn-primary" th:href="@{/penjaga/delete/} + ${penjaga.noPenjaga}">Delete</a> -->
-                                </td>
+                                <div sec:authorize="hasAuthority('MANAGER')">
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" th:href="@{/penjaga/update/} + ${penjaga.noPenjaga}">Update</a>
+                                    </td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox"
+                                               th:field="*{listPenjaga}" th:value="${penjaga.noPenjaga}"
+                                               id="flexCheckDefault" style="text-align: center" >
+                                        <!-- <a class="btn btn-sm btn-primary" th:href="@{/penjaga/delete/} + ${penjaga.noPenjaga}">Delete</a> -->
+                                    </td>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
-                        <input type="submit" value="Delete yang dipilih" class="btn btn-danger">
+                        <div sec:authorize="hasAuthority('MANAGER')">
+                            <input type="submit" value="Delete yang dipilih" class="btn btn-danger">
+                        </div>
                         <br>
                         <br>
                     </form>
@@ -67,9 +73,9 @@
                     <h4 th:text="'Tidak ada penjaga'"></h4>
                 </div>
                 <br>
-                <table class="table">
+                <table class="table" style="text-align: center">
                     <thead>
-                    <tr style="text-align: center" >
+                    <tr>
                         <th>No</th>
                         <th>Nomor Film</th>
                         <th>Nama</th>
@@ -78,7 +84,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="film, iterationStatus : ${listFilm}" style="text-align: center" >
+                    <tr th:each="film, iterationStatus : ${listFilm}">
                         <td th:text="${iterationStatus.count}"></td>
                         <td th:text="${film.noFilm}"></td>
                         <td th:text="${film.namaFilm}"></td>

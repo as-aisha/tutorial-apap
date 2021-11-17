@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title> 21 Cineplux </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-$END$
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <br>
+    <h2>Daftar Seluruh User</h2>
+    <br>
+    <table class="table" style="text-align: center" >
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Username</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iterationStatus : ${listUser}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.nama}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:if="${user.role.id} == 1">ADMIN</td>
+            <td th:if="${user.role.id} == 2">MANAGER</td>
+            <td th:if="${user.role.id} == 3">USER</td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/user/delete/} + ${user.id}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <a class="btn btn-primary" href="/">Home</a>
+    <a class="btn btn-primary" href="/user/add">Tambah User Baru</a>
+</div>
+
+<footer th:replace="fragments/fragment :: footer"></footer>
+
 </body>
+
 </html>

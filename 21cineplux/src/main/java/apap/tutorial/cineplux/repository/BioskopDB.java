@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface BioskopDB extends JpaRepository<BioskopModel, Long> {
     Optional<BioskopModel> findByNoBioskop(Long noBioskop);
-    List<BioskopModel> findOrderByNamaBioskopDesc();
+    List<BioskopModel> findAllByOrderByNamaBioskopDesc();
 }
