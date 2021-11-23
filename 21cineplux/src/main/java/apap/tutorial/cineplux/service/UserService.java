@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     UserModel getUserById(String id);
     UserModel getUserByUsername(String username);
-    UserModel addUser(UserModel user);
+    String addUser(UserModel user);
     String encrypt(String password);
     List<UserModel> getUserList();
     void deleteUser(UserModel user);

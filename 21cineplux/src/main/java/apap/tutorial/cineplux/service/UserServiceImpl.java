@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,10 +35,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserModel addUser(UserModel user) {
+    public String addUser(UserModel user) {
         String pass = encrypt(user.getPassword());
         user.setPassword(pass);
-        return userDB.save(user);
+        List<String> listEmail = new ArrayList<String>();
+        for (UserModel u : userDB.findAll()) {
+            listEmail.add(u.getEmail());
+        }
+        if (listEmail.contains(user.getEmail())) {
+            return "Email sudah ada";
+        } else {
+            userDB.save(user);
+            return "add user success";
+        }
     }
 
     @Override
