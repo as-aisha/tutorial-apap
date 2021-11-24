@@ -96,7 +96,9 @@
                 </table>
                 <br>
                 <a class="btn btn-primary" href="/bioskop/viewall">Kembali</a>
-                <a class="btn btn-primary" th:href="@{/penjaga/add/} + ${bioskop.noBioskop}">Tambah Penjaga</a>
+                <div sec:authorize="hasAuthority('MANAGER')">
+                    <a class="btn btn-primary" th:href="@{/penjaga/add/} + ${bioskop.noBioskop}">Tambah Penjaga</a>
+                </div>
             </div>
         </div>
     </div>

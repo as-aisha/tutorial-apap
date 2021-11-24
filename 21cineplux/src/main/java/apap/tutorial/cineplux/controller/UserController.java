@@ -5,6 +5,7 @@ import apap.tutorial.cineplux.model.UserModel;
 import apap.tutorial.cineplux.service.RoleService;
 import apap.tutorial.cineplux.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,10 @@ public class UserController {
 
     @PostMapping(value = "/add")
     private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
-        userService.addUser(user);
+        String keyword = userService.addUser(user);
+        UserModel addeduser = userService.getUserByUsername(user.getUsername());
         model.addAttribute("user", user);
+        model.addAttribute("keyword", keyword);
         return "add-user";
     }
 
@@ -52,7 +55,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{id}")
-    public String updateUserPasswordForm(@PathVariable String id, Model model){
+    public String updateUserPassForm(@PathVariable String id, Model model){
         UserModel user = userService.getUserById(id);
         if (user == null){
             return "error-notfound";
@@ -69,7 +72,7 @@ public class UserController {
         }
     }
     @PostMapping("/update")
-    public String updateUserPasswordSubmit(
+    public String updateUserPassSubmit(
             @ModelAttribute UserModel user,
             @RequestParam ("passwordlama") String passwordlama,
             @RequestParam ("passwordbaru") String passwordbaru,
