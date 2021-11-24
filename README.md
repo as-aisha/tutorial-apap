@@ -7,6 +7,51 @@
 ---
 ## Tutorial 5
 ### Pertanyaan
+1. Jelaskan secara singkat perbedaan **Otentikasi** dan **Otorisasi**! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+
+   → Otentikasi diperlukan untuk melakukan verifikasi bahwa pengguna mempunyai akses untuk masuk ke dalam sistem, sedangkan otorisasi merupakan pengaturan hak pengguna yang telah memiliki otentikasi, di mana otorisasi akan menentukan fitur apa saja yang dapat diakses oleh seorang pengguna yang telah diotentikasi. Pengguna dengan role Admin tentunya memiliki hak otorisasi yang berbeda dengan pengguna yang memiliki role sebagai Staf biasa
+
+   → Otentikasi diimplementasikan untuk fitur login dalam file WebSecurityConfig.java
+    ```
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    }
+    ```
+    → Contoh implementasi otentikasi adalah untuk latihan nomor 1, 2, dan 3. Salah satu contohnya ada dalam file WebSecurityConfig.java, yaitu untuk membatasi yang dapat melihat, menambahkan, dan menghapus user hanya user dengan role ADMIN
+    ```
+    ...
+        .antMatchers("/user/viewall").hasAuthority("ADMIN")
+        .antMatchers("/user/add").hasAuthority("ADMIN")
+        .antMatchers("/user/delete/*").hasAuthority("ADMIN")
+    ...
+    ```
+
+2. Apa itu **BCryptPasswordEncoder**? Jelaskan secara singkat cara kerja dan tujuannya.
+
+   → BCryptPasswordEncoder merupakan salah satu tools yang dapat mengubah password (password encoder) dengan fungsi hashing kuat yang dimiliki oleh BCrypt. Cara kerjanya dimulai dengan membuat objek BCryptPasswordEncoder. Selanjutnya, ketika program menerima input, akan dilakukan encode password dengan cara hashing menggunakan objek BCryptPasswordEncoder yang telah dibuat dengan tetap memanfaatkan method encode standar. Tujuan dari bycript adalah untuk melindungi dari serangan rainbow table dengan mengunakan salt. Selain itu, bcrypt juga berfungsi adaptif, di mana seiring waktu, jumlah iterasi dapat ditingkatkan untuk membuatnya lebih lambat sehingga semakin aman terhadap serangan pencarian brute-force bahkan dengan meningkatnya daya komputasi. bycript juga berfungsi sebagai algoritme hash password dasar untuk OpenBSD dan sistem lain termasuk beberapa distribusi Linux seperti SUSE Linux.
+
+3. Apakah penyimpanan password sebaiknya menggunakan **encryption** atau **hashing**? Mengapa demikian?
+
+   → Menurut saya, lebih baik penyimpanan password sebaiknya menggunakan hashing. Hal ini dikarenakan hashing bersifat satu arah atau well mapping sehingga akan sulit untuk dipulihkan dan mendapatkan string yang asli kembali. Jika menggunakan enkripsi yang bersifat dua arah atau reversible, ketika ada string yang rusak maka password akan lebih mudah dienkripsi jika memiliki kuncinya, di mana artinya akan lebih mudah untuk mengakses basis data menggunakan enkripsi. Lain halnya dengan hashing yang akan sulit untuk diakses melalui basis data bahkan cenderung tidak mungkin.
+
+4. Jelaskan secara singkat apa itu **UUID** beserta penggunaannya!
+
+   → Universally Unique Identifier atau UUID menciptakan sistem yang mampu mengidentifikasi sesuatu secara praktis dan unik. Dengan UUID, siapapun dapat mengidentifikasi sesuatu bahwa apa yang dikenalnya tidak akan sama dengan yang teridentifikasi oleh pihak lain. Dari kegunaan ini, informasi yang diberi label UUID dapat digabungkan dengan basis data tanpa perlu menyeelsaikan konflik identifier. Pada program, UUID biasa digunakan untuk menginisiasi ID User.
+
+5. Apa kegunaan class **UserDetailsServiceImpl.java**? Mengapa harus ada class tersebut?
+
+   → UserDetailsServiceImpl.java berguna untuk mengotentikasi user. Dalam class ini juga terdapat extend dari UserDetailsService yang di-import dari spring security yang dipanggil dengan memanfaatkan .core. Class ini harus ada agar menghasilkan objek UserDetail yang akan memberikan informasi terkait user yang terdapat pada database. Selain itu, class ini juga dapat berguna untuk mengotorisasi user dengan role yang dimiliki masing-masing user.
+
+
+### What I did not understand
+- [ ] constraint untuk password
+
+
+
+---
+## Tutorial 5
+### Pertanyaan
 1. Apa itu Postman? Apa kegunaannya?
 
    → Postman merupakan sebuah aplikasi yang berfungsi sebagai REST CLIENT untuk melakukan uji coba REST API. Postman biasa digunakan oleh developer pembuat API sebagai tools untuk menguji API yang telah mereka buat.
