@@ -8,9 +8,11 @@ import java.util.List;
 public interface UserService {
     UserModel getUserById(String id);
     UserModel getUserByUsername(String username);
-    String addUser(UserModel user);
+    UserModel addUser(UserModel user);
     String encrypt(String password);
     List<UserModel> getUserList();
     void deleteUser(UserModel user);
-    UserModel updateUser(UserModel user, String passwordlama, String passwordbaru, String konfirmasi);
+//    UserModel updatePass(UserModel user, String passwordlama, String passwordbaru, String konfirmasi);
+    boolean validasiPassword(UserModel user,String password);
+    UserModel updatePassword(UserModel user, String password);
 }

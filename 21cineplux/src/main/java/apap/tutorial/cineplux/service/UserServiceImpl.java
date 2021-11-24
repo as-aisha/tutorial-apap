@@ -35,6 +35,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public UserModel addUser(UserModel user) {
+        String pass = encrypt(user.getPassword());
+        user.setPassword(pass);
+        return userDB.save(user);
+    }
+
+/**
+    // Challenge
+    @Override
     public String addUser(UserModel user) {
         String pass = encrypt(user.getPassword());
         user.setPassword(pass);
@@ -49,6 +58,7 @@ public class UserServiceImpl implements UserService{
             return "add user success";
         }
     }
+*/
 
     @Override
     public String encrypt(String password) {
@@ -65,8 +75,9 @@ public class UserServiceImpl implements UserService{
         userDB.delete(user);
     }
 
+/**
     @Override
-    public UserModel updateUser(UserModel user, String passwordlama, String passwordbaru, String konfirmasi) {
+    public UserModel updatePass(UserModel user, String passwordlama, String passwordbaru, String konfirmasi) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Boolean isPasswordMatch = passwordEncoder.matches(passwordlama, user.getPassword());
 
@@ -77,5 +88,18 @@ public class UserServiceImpl implements UserService{
             }
         }
         return user;
+    }
+
+ */
+
+    @Override
+    public boolean validasiPassword(UserModel user, String password) {
+        return new BCryptPasswordEncoder().matches(password, user.getPassword());
+    }
+
+    @Override
+    public UserModel updatePassword(UserModel user, String password) {
+        user.setPassword(new BCryptPasswordEncoder().encode(password));
+        return userDB.save(user);
     }
 }

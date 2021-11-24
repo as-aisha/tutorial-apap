@@ -21,8 +21,9 @@
                 <p th:text="'Nama       : ' + ${user.getNama()}"></p>
                 <p th:text="'Email: ' + ${user.getEmail()}"></p>
                 <p th:text="'Role: ' + ${user.getRole().getRole()}"></p>
+                <br>
                 <td>
-                    <a class="btn btn-sm btn-primary" th:href="@{/user/update/} + ${user.id}">Update Password</a>
+                    <a class="btn btn-sm btn-primary" th:href="@{/user/ubahPassword}">Update Password</a>
                 </td>
             </div>
         </div>
