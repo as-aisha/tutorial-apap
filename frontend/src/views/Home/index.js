@@ -23,12 +23,12 @@ export default class Home extends React.Component {
                 <h1 className="text-center mt-3 mb-0">Mini Commerce</h1>
                 <div style={{ position: "fixed", top: 25, right: 25 }}>
                     <Fab variant="extended" onClick={this.handleToggle}>
-                        {this.state.cartHidden ?
+                        {this.state.cartHidden ? (
                             <Badge color="secondary" badgeContent={this.state.cartItems.length}>
                                 <ShoppingCartIcon />
                             </Badge>
-                            : <ViewStreamIcon/>}
-                    </Fab>
+                            ): <ViewStreamIcon/>}
+                    </Fab>  
                 </div>
                 <p className="text-center text-secondary text-sm font-italic">
                     (this is a <strong>class-based</strong> application)
@@ -38,6 +38,7 @@ export default class Home extends React.Component {
                     <div className="row mt-3">
                         {!this.state.cartHidden ? (
                             <div className="col-sm">
+                                <button type="button" class="btn btn-danger float-right" onClick={this.deleteAllItemFromCart}>Delete All Items in Cart</button>
                                 <List
                                     title="My Cart"
                                     items={this.state.cartItems}
@@ -100,5 +101,12 @@ export default class Home extends React.Component {
     handleToggle = () => {
         const cartHidden = this.state.cartHidden;
         this.setState({ cartHidden: !cartHidden });
+    };
+
+    deleteAllItemFromCart = () => {
+        for (let i = 0; i < this.state.cartItems.length; i++) {
+            this.updateShopItem(this.state.cartItems[i], false)
+        }
+        this.setState({ balance: 120, cartItems: [] });
     };
 }
