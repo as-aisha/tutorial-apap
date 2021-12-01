@@ -5,6 +5,61 @@
 * **Aisha Salsabila** - *1906399902* - *C*
 
 ---
+## Tutorial 7
+### Pertanyaan
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+
+   - Latihan 1
+
+     ![Screenshot Latihan 1](/frontend/ss-latihan-1.png)
+     
+     Pada latihan nomor 1, saya membuat function baru (handleDeleteItemFromCart) untuk menghapus sebuah item dari My Cart. Item akan terhapus ketika tombol tong sampah (delete) ditekan. Logic dari function-nya cukup mirip dengan function handleAddItemToCart, di mana saya mendefinisikan terlebih dahulu properti yang akan digunakan. Selain itu, salah satu hal utama dalam function ini adalah mendapatkan index item yang ingin dihapus, yang mana didapatkan melalui deklarasi const targetId serta menggunakan method splice yang dimiliki oleh Array JS untuk menghapus item pada list. Parameter pertama method splice adalah index item yang akan dihapus dan parameter kedua menunjukkan jumlah item yang akan dihapus. Setelah item dihapus dari newItems (yang mana merupakan component cartItems), dengan menggunakan method updateShopItem dan mengubah status item menjadi false, item akan dikembalikan ke list shopItems.
+
+   - Latihan 2
+
+     ![Screenshot Latihan 2](/frontend/ss-latihan-2.png)
+
+     Untuk latihan nomor 2, saya menambahkan properti balance pada function handleAddItemToCart dan handleDeleteFromCart yang nantinya akan digunakan sesuai kebutuhan. Saya juga menambahkan operasi setState untuk memperbaharui properti balance yang dimiliki pengguna. Ketika pengguna memasukkan item ke dalam cart, nilai balance akan dikurangi dengan harga item tersebut dan ketika pengguna menghapus item dari cart, nilai balance akan ditambah sejumlah harga item yang dihapuskan. 
+     
+   - Latihan 3
+
+     ![Screenshot Latihan 3](/frontend/ss-latihan-3.png)
+     
+     Pada latihan nomor 3, saya memanfaatkan kembali properti balance yang ada pada function handleAddItemToCart. Jika balance yang dimiliki pengguna nilainya lebih dari atau sama dengan harga item yang ingin dimasukkan, item akan ditambahkan ke dalam cart seperti biasa. Namun, jika nilai balance yang dimiliki kurang dari harga item yang ingin ditambahkan ke cart, akan ditampilkan pesan bahwa balance yang dimiliki tidak mencukupi untuk melakukan pembelian.
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara ***state*** dan ***props***?
+
+   → *State* merupakan sebuah properti atau variabel yang didefinisikan dalam sebuah class, sedangkan *props* (kependekan dari *'properties'*) adalah properti atau variabel yang berasal dari luar class atau class parent. Perbedaan yang mendasar dari keduanya adalah pada props kita tidak dapat mengubah nilainya secara langsung, sedangkan pada state kita dapat melakukan hal tersebut. State bersifat privat atau tidak dapat digunakan di komponen lain, sedangkan props dapat digunakan di komponen lain (komponen child).
+
+3. Menurut kamu, apakah sebaiknya kita menggunakan *component* (e.g. List, Item) dalam React? Sebutkan alasannya.
+
+   → Ya, karena dengan menggunakan component kita dapat membuat UI dari bagian-bagian yang terpisah (building block) dan menyusunnya menjadi kesatuan (compose) serta di-render menjadi sebuah kode HTML. Hal ini tentunya akan memberikan kemudahan, di mana component dapat digunakan kembali (reusable). Sebagai contoh, component List dan Item pada tutorial 7 dapat digunakan secara langsung pada beberapa function yang berbeda.
+
+4. Apa perbedaan *class component* dan *functional component*?
+
+   → Perbedaan mendasar antara class component dan functional component adalah class component dapat menggunakan state dan props, sedangkan functional component hanya bisa menggunakan props. Hal itulah yang menyebabkan function component disebut stateless component atau biasa digunakan juga sebagai UI Component (komponen yang menangani tampilan).
+
+5. Dalam React, apakah perbedaan *component* dan *element*?
+
+   →  Komponen pada React secara konsep sama seperti function pada JavaScript, perbedaannya adalah jika function menerima sebarang input yang disebut parameter atau argumen dan me-return sebuah nilai, komponen menerima input yang disebut props dan me-return React Element yang menggambarkan apa yang akan ditampilkan di layar. Komponen memungkinkan developer untuk membuat UI yang independent, isolated, dan reusable sehingga mengurangi repetisi kode.
+   
+   →  Elemen adalah blok bangunan terkecil di React, yang menggambarkan apa yang akan dilihat oleh user di layar mereka. Secara sederhana, elemen dapat didefinisikan sebagai representasi virtual dari DOM. Elemen React bersifat immutable, artinya setelah elemen itu dibuat, maka attribute dan children-nya tidak bisa diubah, sehingga satu-satunya cara untuk meng-update UI adalah dengan membuat elemen baru, dan kemudian di-pass kembali ke ReactDOM.render().
+
+
+**Referensi:**
+- [Mengenal State Dan Props Pada React](https://www.dumetschool.com/blog/Mengenal-State-Dan-Props-Pada-React)
+- [Modul 2-4 Props dan State](https://nusantech.com/modul-2-4-props-dan-state/)
+- [Dasar React Component](https://medium.com/@ekaprasasti/dasar-react-component-ff6b4926e86c)
+- [Class Component dan Functional Component Serta Import dan Export React JS](https://hobikoding.github.io/component-react/)
+- [Mengenal Elemen, Komponen, dan Props di React](https://hasanmubarok.medium.com/mengenal-element-components-dan-props-di-react-bbff544dd201)
+
+
+### What I did not understand
+- [ ] banyak T_T
+
+
+
+---
 ## Tutorial 6
 ### Pertanyaan
 1. Jelaskan secara singkat perbedaan **Otentikasi** dan **Otorisasi**! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
@@ -81,7 +136,7 @@
 
    → ResponseEntity merepresentasikan seluruh respons HTTP: kode status, header, dan isi sehingga ia dapat digunakan untuk mengonfigurasi respons HTTP sepenuhnya. Jika kita ingin menggunakannya, kita harus me-return-nya dari end point dan Spring akan mengurus sisanya.
    
-   BindingResult merupakan objek Spring yang menyimpan hasil validation dan binding, serta berisi error-error yang mungkin terjadi. BindingResult harus muncul tepat setelah objek model yang divalidasi atau Spring akan gagal memvalidasi objek dan melempar exception. BindingResult berfungsi untuk 
+   BindingResult merupakan objek Spring yang menyimpan hasil validation dan binding, serta berisi error-error yang mungkin terjadi. BindingResult harus muncul tepat setelah objek model yang divalidasi atau Spring akan gagal memvalidasi objek dan melempar exception. 
 
 **Referensi:**
 - [Postman](https://antares.id/id/postman.html#:~:text=Terima%20Data%20(Get)-,Pendahuluan,API%20yang%20telah%20mereka%20buat.)
