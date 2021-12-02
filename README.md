@@ -5,25 +5,100 @@
 * **Aisha Salsabila** - *1906399902* - *C*
 
 ---
+## Tutorial 8
+### Pertanyaan
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no. 1, dan mengapa kalian melakukan langkah - langkah tersebut?
+
+   → Dari soal tutorial sudah tersedia source code yang dapat meng-solve apa yang ditanyakan pada Latihan No. 1. Kode tersebut berfungsi agar text field pada form add item menjadi kosong setiap kali pengguna akan menambah item baru. Berikut merupakan potongan kodenya.
+   ```javascript
+    async handleSubmitItem(event) {
+        ...
+        try {
+            const data = {
+                ...
+            };
+            ...
+            this.setState({
+                items: [],
+                isLoading: false,
+                isCreate: false,
+                title: "",
+                price: 0,
+                description: "",
+                category: "",
+                quantity: 0
+            })
+            ...
+        } catch (error) {
+            ...
+        }
+        ...
+    }
+   ```
+
+2. Jelaskan fungsi dari async dan await!
+
+   - async → merupakan salah satu function pada javascript yang berguna untuk mengubah function menjadi asynchronous atau menjadi bersifat non-blocking. Kembalian dari function async adalah semua Promise.
+   - await → function await berguna untuk menunda jalannya sebuah kode sampai proses async berhasil. Serupa dengan async, function await juga akan mengembalikan sebuah Promise, namun kode yang ada pada function await baru dapat dijalankan apabila Promise sudah resolved.
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle pada pertanyaan ini.
+
+   - Kode program
+     ![Screenshot kode program](/images/T8-1.jpg)
+     ![Screenshot kode program](/images/T8-2.jpg)
+   - Program dijalankan
+     ![Screenshot program dijalankan](/images/T8-3.jpg)
+   - shouldComponentUpdate() tidak muncul
+     ![Screenshot shouldComponentUpdate() tidak muncul](/images/T8-4.jpg)
+   - Perubahan pada kode program
+     ![Screenshot perubahan pada kode program](/images/T8-5.jpg) 
+     ![Screenshot perubahan pada kode program](/images/T8-6.jpg) 
+     ![Screenshot perubahan pada kode program](/images/T8-7.jpg) 
+   - Error pada shouldComponentUpdate()
+     ![Screenshot Error pada shouldComponentUpdate()](/images/T8-8.jpg)
+     - Setelah tombol change state ditekan
+     ![Screenshot Error setelah changeState](/images/T8-9.jpg)
+
+
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”
+
+   - componentDidMount → Function ini dipanggil setelah function render dijalankan dan biasa digunakan untuk manipulasi DOM atau operasi pemanggilan data (ajax). Seluruh operasi DOM terjadi bukan pada function render, melainkan pada fase ini.
+   - shouldComponentUpdate → Function ini selalu dipanggil sebelum function render sehingga memungkinkan untuk mengatur apakah re-rendering diperlukan atau tidak. Hal ini salah satunya dapat dilakukan dengan mengakses props dan state saat ini. Function shouldComponentUpdate harus memiliki nilai return yang berupa boolean, di mana ketika fungsi mengembalikan nilai true component akan di-render ulang, vice versa. Terdapat 2 parameter pada function ini, yaitu nextProps dan nextState.
+   - componentDidUpdate → Function ini dipanggil setelah function render dam digunakan saat melakukan interaksi dengan environment non-React, seperti HTTP Request. Mirip dengan componentDidMount, function ini dapat digunakan untuk manipulasi DOM setelah data diperbarui.
+   - componentWillReceiveProps → Function ini hanya dipanggil ketika props telah berubah dan tidak dipanggil pada saat rendering awal. Fungsi ini berguna untuk membandingkan props yang telah ada dengan props yang baru serta memeriksa apakah terdapat perubahan terhadap props tersebut. Function ini juga memungkinkan perubahan state berdasarkan pada props saat ini dan props baru tanpa memicu rendering ulang.
+   - componentWillUnmount → Function ini dipanggil ketika komponen telah dibuang dari DOM. componentWillUnmount berfungsi ketika diperlukannya operasi-operasi yang beruhubungan dengan pembersihan. Sebagai contoh, membuang timer yang sebelumnya telah didefinisikan di componentDidMount, menghilangkan event listener, membatalkan network request, dsb.
+
+**Referensi:**
+- [Javascript Async/Await](https://www.kawankoding.id/javascript-async-await/)
+- [React.Component](https://reactjs.org/docs/react-component.html)
+
+
+### What I did not understand
+- [ ] banyak T_T
+
+
+
+---
 ## Tutorial 7
 ### Pertanyaan
 1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
 
    - Latihan 1
 
-     ![Screenshot Latihan 1](/frontend/ss-latihan-1.png)
+     ![Screenshot Latihan 1](/images/T7-1.png)
      
      Pada latihan nomor 1, saya membuat function baru (handleDeleteItemFromCart) untuk menghapus sebuah item dari My Cart. Item akan terhapus ketika tombol tong sampah (delete) ditekan. Logic dari function-nya cukup mirip dengan function handleAddItemToCart, di mana saya mendefinisikan terlebih dahulu properti yang akan digunakan. Selain itu, salah satu hal utama dalam function ini adalah mendapatkan index item yang ingin dihapus, yang mana didapatkan melalui deklarasi const targetId serta menggunakan method splice yang dimiliki oleh Array JS untuk menghapus item pada list. Parameter pertama method splice adalah index item yang akan dihapus dan parameter kedua menunjukkan jumlah item yang akan dihapus. Setelah item dihapus dari newItems (yang mana merupakan component cartItems), dengan menggunakan method updateShopItem dan mengubah status item menjadi false, item akan dikembalikan ke list shopItems.
 
    - Latihan 2
 
-     ![Screenshot Latihan 2](/frontend/ss-latihan-2.png)
+     ![Screenshot Latihan 2](/images/T7-2.png)
 
      Untuk latihan nomor 2, saya menambahkan properti balance pada function handleAddItemToCart dan handleDeleteFromCart yang nantinya akan digunakan sesuai kebutuhan. Saya juga menambahkan operasi setState untuk memperbaharui properti balance yang dimiliki pengguna. Ketika pengguna memasukkan item ke dalam cart, nilai balance akan dikurangi dengan harga item tersebut dan ketika pengguna menghapus item dari cart, nilai balance akan ditambah sejumlah harga item yang dihapuskan. 
      
    - Latihan 3
 
-     ![Screenshot Latihan 3](/frontend/ss-latihan-3.png)
+     ![Screenshot Latihan 3](/images/T7-3.png)
      
      Pada latihan nomor 3, saya memanfaatkan kembali properti balance yang ada pada function handleAddItemToCart. Jika balance yang dimiliki pengguna nilainya lebih dari atau sama dengan harga item yang ingin dimasukkan, item akan ditambahkan ke dalam cart seperti biasa. Namun, jika nilai balance yang dimiliki kurang dari harga item yang ingin ditambahkan ke cart, akan ditampilkan pesan bahwa balance yang dimiliki tidak mencukupi untuk melakukan pembelian.
 
@@ -258,11 +333,10 @@ Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
     Dengan asumsi sudah dilakukan penambahan Bioskop MAUNG setelah bioskop PAPA APAP ditambahkan sehingga Bioskop MAUNG memiliki Id Bioskop: 2. Penambahan Bioskop MAUNG dilakukan dengan cara mengakses link berikut:
     http://localhost:8080/bioskop/add?idBioskop=2&namaBioskop=Bioskop%20MAUNG&alamat=Fasilkom%20UWIW&noTelepon=089xxx&jumlahStudio=10
 
-5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall , apa yang akan ditampilkan? Sertakan
-juga bukti screenshotmu.
+5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
 
     Setelah menambahkan bioskop lain, ketika mengakses link di atas akan muncul daftar seluruh bioskop yang telah didaftarkan beserta dengan detailnya, yaitu Bioskop PAPA APAP dan Bioskop MAUNG.
-    ![Screenshot Pertanyaan 5](img.png)
+    ![Screenshot Pertanyaan 5](/images/T1.png)
 
 
 ### What I did not understand
